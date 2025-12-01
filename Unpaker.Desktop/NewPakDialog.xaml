@@ -1,0 +1,207 @@
+<Window x:Class="Unpaker.Desktop.NewPakDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Unpaker.Desktop.ViewModels"
+        Title="Create New Pak Archive" 
+        Height="520" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        Background="{StaticResource BackgroundDarkBrush}">
+    
+    <Window.DataContext>
+        <vm:NewPakDialogViewModel/>
+    </Window.DataContext>
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32" 
+                      ResizeBorderThickness="0"
+                      GlassFrameThickness="0"
+                      CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+    
+    <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar -->
+            <Grid Grid.Row="0" Background="{StaticResource BackgroundDarkBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                          Text="Create New Pak Archive" 
+                          FontSize="12" 
+                          FontWeight="SemiBold"
+                          Foreground="{StaticResource ForegroundBrush}"
+                          VerticalAlignment="Center"
+                          Margin="12,0,0,0"/>
+                
+                <Button Grid.Column="1" 
+                        Content="&#xE8BB;" 
+                        Style="{StaticResource CloseButton}"
+                        Command="{Binding CancelCommand}"
+                        WindowChrome.IsHitTestVisibleInChrome="True"/>
+            </Grid>
+
+            <!-- Content -->
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <!-- Output Path -->
+                    <TextBlock Text="Output Pak File:" 
+                              Foreground="{StaticResource ForegroundBrush}"
+                              Margin="0,0,0,4"/>
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" 
+                                Text="{Binding OutputPath, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="0,0,8,0"
+                                Height="32"/>
+                        <Button Grid.Column="1" 
+                               Content="Browse..." 
+                               Command="{Binding BrowseOutputCommand}"
+                               Padding="16,10"
+                               MinWidth="80"
+                               Height="32"/>
+                    </Grid>
+
+                    <!-- Input Directory -->
+                    <TextBlock Text="Input Directory:" 
+                              Foreground="{StaticResource ForegroundBrush}"
+                              Margin="0,0,0,4"/>
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" 
+                                Text="{Binding InputDir, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="0,0,8,0"
+                                Height="32"/>
+                        <Button Grid.Column="1" 
+                               Content="Browse..." 
+                               Command="{Binding BrowseInputCommand}"
+                               Padding="16,10"
+                               MinWidth="80"
+                               Height="32"/>
+                    </Grid>
+
+                    <!-- Mount Point -->
+                    <TextBlock Text="Mount Point:" 
+                              Foreground="{StaticResource ForegroundBrush}"
+                              Margin="0,0,0,4"/>
+                    <TextBox Text="{Binding MountPoint, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,0,0,12"
+                            Height="32"/>
+
+                    <!-- Version and Compression Row -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Version:" 
+                                      Foreground="{StaticResource ForegroundBrush}"
+                                      Margin="0,0,0,4"/>
+                            <ComboBox ItemsSource="{Binding Versions}"
+                                     SelectedItem="{Binding SelectedVersion}"
+                                     Padding="8,6">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Compression:" 
+                                      Foreground="{StaticResource ForegroundBrush}"
+                                      Margin="0,0,0,4"/>
+                            <ComboBox ItemsSource="{Binding CompressionOptions}"
+                                     SelectedItem="{Binding SelectedCompression}"
+                                     Padding="8,6">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Encryption -->
+                    <CheckBox Content="Enable Encryption (AES-256)"
+                             IsChecked="{Binding EnableEncryption}"
+                             Foreground="{StaticResource ForegroundBrush}"
+                             Margin="0,0,0,8"/>
+                    
+                    <StackPanel Visibility="{Binding EncryptionPanelVisibility}" Margin="20,0,0,0">
+                        <TextBlock Text="AES Key (64 hex characters):" 
+                                  Foreground="{StaticResource ForegroundDimBrush}"
+                                  FontSize="11"
+                                  Margin="0,0,0,4"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0"
+                                    Text="{Binding AesKey, UpdateSourceTrigger=PropertyChanged}"
+                                    Height="32"
+                                    MaxLength="64"
+                                    FontFamily="Consolas"
+                                    CharacterCasing="Upper"
+                                    Margin="0,0,8,0"/>
+                            <Button Grid.Column="1"
+                                   Content="Generate"
+                                   Command="{Binding GenerateKeyCommand}"
+                                   Padding="16,10"
+                                   MinWidth="80"
+                                   Height="32"/>
+                        </Grid>
+                        <TextBlock Text="Leave empty to generate a random key on create" 
+                                  Foreground="{StaticResource ForegroundDimBrush}"
+                                  FontSize="10"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="1" 
+                           Orientation="Horizontal" 
+                           HorizontalAlignment="Right"
+                           Margin="0,16,0,0">
+                    <Button Content="Cancel" 
+                           Command="{Binding CancelCommand}"
+                           Padding="16,10"
+                           MinWidth="80"
+                           Height="32"
+                           Margin="0,0,8,0"/>
+                    <Button Content="Create" 
+                           Style="{StaticResource SaveButton}"
+                           Command="{Binding CreateCommand}"
+                           MinWidth="80"
+                           Height="32"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,166 @@
+<Window x:Class="Unpaker.Desktop.AboutDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" 
+        Height="470" Width="360"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        Background="{StaticResource BackgroundDarkBrush}">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32" 
+                      ResizeBorderThickness="0"
+                      GlassFrameThickness="0"
+                      CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+    
+    <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar -->
+            <Grid Grid.Row="0" Background="{StaticResource BackgroundDarkBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                          Text="About" 
+                          FontSize="12" 
+                          FontWeight="SemiBold"
+                          Foreground="{StaticResource ForegroundBrush}"
+                          VerticalAlignment="Center"
+                          Margin="12,0,0,0"/>
+                
+                <Button Grid.Column="1" 
+                        Content="&#xE8BB;" 
+                        Style="{StaticResource CloseButton}"
+                        Click="Close_Click"
+                        WindowChrome.IsHitTestVisibleInChrome="True"/>
+            </Grid>
+
+            <!-- Content -->
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- App Name -->
+                    <TextBlock Text="Unpaker" 
+                              FontSize="28" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource AccentBlueBrush}"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,4"/>
+                    
+                    <!-- Version -->
+                    <TextBlock Text="Version 1.0.0" 
+                              FontSize="12"
+                              Foreground="{StaticResource ForegroundDimBrush}"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,16"/>
+                    
+                    <!-- Game Logos -->
+                    <StackPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,16">
+                        <Image Source="/Resources/gta3.png" Height="50" Margin="8,0"/>
+                        <Image Source="/Resources/gtavc.png" Height="50" Margin="8,0"/>
+                        <Image Source="/Resources/gtasa.png" Height="50" Margin="8,0"/>
+                    </StackPanel>
+                    
+                    <!-- Description -->
+                    <TextBlock Text="A tool for viewing and editing Unreal Engine&#x0a;Pak archive files for GTA Definitive Edition."
+                              FontSize="12"
+                              Foreground="{StaticResource ForegroundDimBrush}"
+                              TextAlignment="Center"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,20"/>
+                    
+                    <!-- Developer -->
+                    <TextBlock Text="Developed by"
+                              FontSize="11"
+                              Foreground="{StaticResource ForegroundDimBrush}"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,2"/>
+                    <TextBlock Text="Vaibhav Pandey (VPZ)"
+                              FontSize="14"
+                              FontWeight="SemiBold"
+                              Foreground="{StaticResource ForegroundBrush}"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,20"/>
+                    
+                    <!-- Links -->
+                    <StackPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,16">
+                        <TextBlock Margin="0,0,8,0">
+                            <Hyperlink NavigateUri="https://vaibhavpandey.com/" 
+                                      RequestNavigate="Hyperlink_RequestNavigate"
+                                      Foreground="{StaticResource AccentBlueBrush}">
+                                Website
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,0,8,0">
+                            <Hyperlink NavigateUri="https://www.youtube.com/channel/UC5uV1PRvtnNj9P8VfqO93Pw" 
+                                      RequestNavigate="Hyperlink_RequestNavigate"
+                                      Foreground="{StaticResource AccentBlueBrush}">
+                                YouTube
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,0,8,0">
+                            <Hyperlink NavigateUri="https://github.com/vaibhavpandeyvpz/unpaker" 
+                                      RequestNavigate="Hyperlink_RequestNavigate"
+                                      Foreground="{StaticResource AccentBlueBrush}">
+                                GitHub
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,0,8,0">
+                            <Hyperlink NavigateUri="mailto:contact@vaibhavpandey.com" 
+                                      RequestNavigate="Hyperlink_RequestNavigate"
+                                      Foreground="{StaticResource AccentBlueBrush}">
+                                Email
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock>
+                            <Hyperlink NavigateUri="https://github.com/vaibhavpandeyvpz/unpaker/issues" 
+                                      RequestNavigate="Hyperlink_RequestNavigate"
+                                      Foreground="{StaticResource AccentBlueBrush}">
+                                Support
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    <!-- Disclaimer -->
+                    <TextBlock Text="All names and logos are property of their respective owners&#x0a;and are used for illustration purposes only."
+                              FontSize="10"
+                              Foreground="{StaticResource ForegroundDimBrush}"
+                              TextAlignment="Center"
+                              FontStyle="Italic"
+                              HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Close Button -->
+                <Button Grid.Row="1" 
+                       Style="{StaticResource SaveButton}"
+                       Click="Close_Click"
+                       Height="34"
+                       HorizontalAlignment="Center"
+                       Margin="0,16,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="24,0">
+                        <TextBlock Text="Close" VerticalAlignment="Center" Foreground="Black"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
+

@@ -204,6 +204,31 @@ public class PakReader
     }
 
     /// <summary>
+    /// Get entry information for a file path
+    /// </summary>
+    public EntryInfo? GetEntryInfo(string path)
+    {
+        if (!_pak.Index.Entries.TryGetValue(path, out var entry))
+        {
+            return null;
+        }
+
+        var compression = entry.CompressionSlot.HasValue
+            ? _pak.CompressionMethods[(int)entry.CompressionSlot.Value]
+            : null;
+
+        return new EntryInfo
+        {
+            Path = path,
+            Offset = entry.Offset,
+            CompressedSize = entry.Compressed,
+            UncompressedSize = entry.Uncompressed,
+            Compression = compression,
+            IsEncrypted = entry.IsEncrypted,
+        };
+    }
+
+    /// <summary>
     /// Convert this reader to a writer for in-place modifications
     /// </summary>
     public PakWriter ToPakWriter(Stream stream)
