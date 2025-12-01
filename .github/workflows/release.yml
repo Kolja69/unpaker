@@ -39,7 +39,10 @@ jobs:
         run: dotnet pack Unpaker/Unpaker.csproj --configuration Release --output ./nupkg -p:PackageVersion=${{ steps.version.outputs.VERSION }}
 
       - name: Publish to NuGet
-        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: |
+          Get-ChildItem ./nupkg/*.nupkg | ForEach-Object {
+            dotnet nuget push $_.FullName --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          }
 
       - name: Build CLI
         run: dotnet publish Unpaker.CLI/Unpaker.CLI.csproj --configuration Release --output ./publish/cli
