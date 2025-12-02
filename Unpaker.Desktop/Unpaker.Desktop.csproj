@@ -27,5 +27,13 @@
     <Resource Include="Resources\icon.ico" />
   </ItemGroup>
 
+  <!-- Copy native Oodle library to output directory -->
+  <ItemGroup>
+    <None Include="..\Third-Party\oo2core_9_win64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>oo2core_9_win64.dll</Link>
+    </None>
+  </ItemGroup>
+
 </Project>
 

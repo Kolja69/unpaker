@@ -7,6 +7,11 @@
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+  
+  <!-- Define OODLE_SUPPORTED for .NET 8.0+ -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net9.0'">
+    <DefineConstants>$(DefineConstants);OODLE_SUPPORTED</DefineConstants>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
@@ -25,6 +30,14 @@
     <None Update="..\paks\**\*.pak">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>paks\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+
+  <!-- Copy native Oodle library to output directory for testing -->
+  <ItemGroup>
+    <None Include="..\Third-Party\oo2core_9_win64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>oo2core_9_win64.dll</Link>
     </None>
   </ItemGroup>
 

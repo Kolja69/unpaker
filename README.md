@@ -13,8 +13,9 @@ A comprehensive C# library and desktop application for reading and writing Unrea
 ## Features
 
 ### Library (`Unpaker`)
+
 - **Full Pak Format Support**: Supports Pak versions V0 through V11
-- **Compression**: Supports multiple compression algorithms including Zlib, Gzip, Zstd, and LZ4
+- **Compression**: Supports multiple compression algorithms including Zlib, Gzip, Oodle, Zstd, and LZ4
 - **Encryption**: AES-256 encryption support for pak indices and file data
 - **Reading**: Extract files from existing pak archives
 - **Writing**: Create new pak archives with customizable options
@@ -22,6 +23,7 @@ A comprehensive C# library and desktop application for reading and writing Unrea
 - **Path Hash Seeds**: Support for v10+ pak files with path hash seeds
 
 ### Command-Line Interface (`Unpaker.CLI`)
+
 - **List**: View contents of pak files
 - **Extract**: Extract files from pak archives
 - **Create**: Create new pak archives from directories
@@ -29,13 +31,14 @@ A comprehensive C# library and desktop application for reading and writing Unrea
 - **Info**: Display detailed information about pak files
 
 ### Desktop Application (`Unpaker.Desktop`)
+
 - **Modern Dark UI**: Beautiful dark theme with GTA:VC-inspired accent colors
 - **File Management**: View, add, remove, and extract files from pak archives
 - **Search**: Real-time search filtering by file name or path
 - **Batch Operations**: Extract multiple files or all files at once
 - **Pak Creation**: Create new pak archives with customizable options:
   - Version selection (V0-V11)
-  - Compression method selection
+  - Compression method selection (Zlib, Gzip, Oodle, Zstd, LZ4)
   - AES-256 encryption support
   - Custom mount points
 - **Detailed Information**: View pak file metadata including version, compression, mount point, and encryption status
@@ -44,16 +47,19 @@ A comprehensive C# library and desktop application for reading and writing Unrea
 ## Installation
 
 ### Requirements
+
 - .NET 8.0 SDK or later (for building from source)
 - Windows (for desktop application)
 
 ### Pre-built Binaries
 
 #### Desktop Application
-Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.Desktop.exe`.
+
+Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.Desktop.exe`. The native Oodle library (`oo2core_9_win64.dll`) is included for Oodle compression support.
 
 #### Command-Line Interface
-Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.CLI.exe`.
+
+Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.CLI.exe`. The native Oodle library (`oo2core_9_win64.dll`) is included for Oodle compression support.
 
 ### NuGet Package (Library)
 
@@ -68,6 +74,10 @@ Or using Package Manager Console:
 ```
 Install-Package Unpaker
 ```
+
+#### Oodle Compression Support
+
+To enable Oodle compression/decompression in your application, download the `oo2core_9_win64.dll` from the [Oodle SDK](http://www.radgametools.com/oodle.htm) and place it in your application's output directory (same folder as your executable). Oodle support requires .NET 8.0 or later.
 
 ### Building from Source
 
@@ -116,8 +126,11 @@ unpaker extract path/to/file.pak --output ./extracted/
 # Extract specific files
 unpaker extract path/to/file.pak --output ./extracted/ --files file1.txt file2.txt
 
-# Create a new pak file
+# Create a new pak file with Zlib compression
 unpaker create --output new.pak --input ./source/ --version V11 --compression Zlib
+
+# Create a new pak file with Oodle compression
+unpaker create --output new.pak --input ./source/ --version V11 --compression Oodle
 
 # Add files to existing pak
 unpaker add existing.pak --input ./newfiles/
@@ -181,4 +194,3 @@ All game names and logos are property of their respective owners and are used fo
 ## Support
 
 For issues, feature requests, or questions, please open an issue on [GitHub Issues](https://github.com/vaibhavpandeyvpz/unpaker/issues).
-

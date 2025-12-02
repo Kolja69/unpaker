@@ -39,7 +39,7 @@ internal static class CreateCommand
 
         var compressionOption = new Option<Compression[]>(
             aliases: new[] { "--compression", "-c" },
-            description: "Compression method(s) to use (Zlib, Gzip, Zstd, LZ4). Can be specified multiple times.")
+            description: "Compression method(s) to use (Zlib, Gzip, Oodle, Zstd, LZ4). Can be specified multiple times.")
         {
             Arity = ArgumentArity.ZeroOrMore,
             AllowMultipleArgumentsPerToken = true

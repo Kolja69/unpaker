@@ -83,6 +83,38 @@ public class DecompressionFailedException : UnpakerException
 }
 
 /// <summary>
+/// Compression failed
+/// </summary>
+public class CompressionFailedException : UnpakerException
+{
+    public Compression Compression { get; }
+
+    public CompressionFailedException(Compression compression)
+        : base($"{compression} compression failed")
+    {
+        Compression = compression;
+    }
+
+    public CompressionFailedException(Compression compression, Exception innerException)
+        : base($"{compression} compression failed", innerException)
+    {
+        Compression = compression;
+    }
+}
+
+/// <summary>
+/// Oodle native library is not available
+/// </summary>
+public class OodleNotAvailableException : UnpakerException
+{
+    public OodleNotAvailableException()
+        : base($"Oodle native library ({CompressionHelper.OodleLibraryName}) was not found. " +
+               "Please ensure the native library is in the same directory as the application.")
+    {
+    }
+}
+
+/// <summary>
 /// Entry not found in pak file
 /// </summary>
 public class MissingEntryException : UnpakerException

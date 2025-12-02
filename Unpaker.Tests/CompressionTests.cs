@@ -74,6 +74,33 @@ public class CompressionTests
         Assert.Equal(originalData, decompressed);
     }
 
+#if OODLE_SUPPORTED
+    [Fact]
+    public void OodleCompressionRoundTrip()
+    {
+        // Skip if Oodle is not available (native library not found)
+        if (!CompressionHelper.IsOodleAvailable)
+        {
+            return;
+        }
+        
+        var originalData = new byte[1000];
+        new Random(42).NextBytes(originalData);
+
+        var compressed = CompressionHelper.Compress(originalData, Compression.Oodle);
+        var decompressed = CompressionHelper.Decompress(compressed, Compression.Oodle, originalData.Length);
+
+        Assert.Equal(originalData, decompressed);
+    }
+
+    [Fact]
+    public void OodleIsAvailable()
+    {
+        // Verify that Oodle is available in the test environment
+        Assert.True(CompressionHelper.IsOodleAvailable, 
+            "Oodle native library should be available in test environment");
+    }
+#else
     [Fact]
     public void OodleCompressionThrowsNotSupported()
     {
@@ -81,5 +108,6 @@ public class CompressionTests
         Assert.Throws<CompressionNotSupportedException>(() =>
             CompressionHelper.Compress(data, Compression.Oodle));
     }
+#endif
 }
 

@@ -26,6 +26,7 @@ public class NewPakDialogViewModel : ViewModelBase
             new("None", null),
             new("Zlib", Compression.Zlib),
             new("Gzip", Compression.Gzip),
+            new("Oodle", Compression.Oodle),
             new("Zstd", Compression.Zstd),
             new("LZ4", Compression.LZ4),
         };
