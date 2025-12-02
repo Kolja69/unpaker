@@ -44,8 +44,30 @@ A comprehensive C# library and desktop application for reading and writing Unrea
 ## Installation
 
 ### Requirements
-- .NET 8.0 SDK or later
+- .NET 8.0 SDK or later (for building from source)
 - Windows (for desktop application)
+
+### Pre-built Binaries
+
+#### Desktop Application
+Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.Desktop.exe`.
+
+#### Command-Line Interface
+Download the latest release from [GitHub Releases](https://github.com/vaibhavpandeyvpz/unpaker/releases) and extract `Unpaker.CLI.exe`.
+
+### NuGet Package (Library)
+
+Install the library via NuGet Package Manager or using the .NET CLI:
+
+```bash
+dotnet add package Unpaker
+```
+
+Or using Package Manager Console:
+
+```
+Install-Package Unpaker
+```
 
 ### Building from Source
 
